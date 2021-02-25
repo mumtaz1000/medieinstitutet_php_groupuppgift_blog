@@ -1,9 +1,7 @@
 <?php
 $username = $_POST['username'];
 $password = $_POST['password'];
-
 include("../includes/partials/database_connection.php");
-
 $salt = "*-+/12345678aqwsdertgyjh!#¤=)((";
 $password = md5($password . $salt);
 
@@ -21,4 +19,3 @@ if ($return[0] > 0) {
 } else {
     header("location: signup_form.php");
 }
-?>
