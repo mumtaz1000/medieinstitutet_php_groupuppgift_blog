@@ -10,7 +10,7 @@ CREATE TABLE `Users`(
     `User_name` VARCHAR(30) NOT NULL,
     `User_email` VARCHAR(30) NOT NULL,
     `User_password` VARCHAR(50) NOT NULL,
-    `User_role` ENUM('Customer','Admin') NOT NULL
+    `User_role` ENUM('User','Admin') NOT NULL
 )
 ENGINE = InnoDB;
 
