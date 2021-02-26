@@ -18,6 +18,14 @@
     session_start();
     if (isset($_SESSION['username']) && (isset($_SESSION['password']))) {
         echo "<h1>Welcome " . $_SESSION['username'] . "</h1>";
+        if (isset($_SESSION['User_role']) && $_SESSION['User_role'] == "admin") {
+            echo "You are admin. <br>";
+        } else 
+        if (isset($_SESSION['User_role']) && $_SESSION['User_role'] == "Customer") {
+            echo "You are not admin.<br>";
+        } else {
+            echo "No user role to display.<br>";
+        }
         echo '<a href="">Logout</a>';
         die();
     }
