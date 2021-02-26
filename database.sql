@@ -8,14 +8,11 @@ DROP TABLE IF EXISTS `Users`;
 CREATE TABLE `Users`(
     `User_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `User_name` VARCHAR(30) NOT NULL,
+    `User_email` VARCHAR(30) NOT NULL,
     `User_password` VARCHAR(50) NOT NULL,
     `User_role` ENUM('Admin','Customer') NOT NULL
 )
 ENGINE = InnoDB;
-
-INSERT INTO `users` (`User_id`, `User_name`, `User_password`, `User_role`)
- VALUES
-        (1, 'Admin123', 'password123', 'Admin');
 
 CREATE TABLE `Posts`(
     `Post_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,

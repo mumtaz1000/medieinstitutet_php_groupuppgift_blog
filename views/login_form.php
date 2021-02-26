@@ -1,5 +1,5 @@
 <?php
-include_once('../includes/partials/head.php');
+include_once("../includes/partials/head.php");
 ?>
 
 <body>
