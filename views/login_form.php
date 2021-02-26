@@ -16,7 +16,7 @@ include_once("../includes/partials/head.php");
         } else {
             echo "No user role to display.<br>";
         }
-        echo '<a href="">Logout</a>';
+        echo '<a href="logout.php">Logout</a>';
         die();
     }
     ?>
