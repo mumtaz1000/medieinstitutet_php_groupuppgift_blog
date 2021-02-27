@@ -10,7 +10,7 @@ if (isset($_SESSION['username']) && (isset($_SESSION['password']))) {
     if (isset($_SESSION['User_role']) && $_SESSION['User_role'] == "Admin") {
         include_once('../includes/partials/header_admin.php');
     } else 
-        if (isset($_SESSION['User_role']) && $_SESSION['User_role'] == "Customer") {
+        if (isset($_SESSION['User_role']) && $_SESSION['User_role'] == "User") {
         echo "You are not admin.<br>";
     } else {
         echo "No user role to display.<br>";
@@ -19,22 +19,22 @@ if (isset($_SESSION['username']) && (isset($_SESSION['password']))) {
     die();
 }
 ?>
-                <h1>Login Form</h1>
-                <form action="login_action.php" method="post">
-                    <div class="form-group">
-                        <label for="exampleInputUsername">Username</label>
-                        <input type="text" class="form-control" name="username" placeholder="Username..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-
-            </div>
-        </div>
+<h1>Login Form</h1>
+<form action="login_action.php" method="post">
+    <div class="form-group">
+        <label for="exampleInputUsername">Username</label>
+        <input type="text" class="form-control" name="username" placeholder="Username..." required>
     </div>
+    <div class="form-group">
+        <label for="exampleInputPassword">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+</div>
+</div>
+</div>
 </div>
 
 

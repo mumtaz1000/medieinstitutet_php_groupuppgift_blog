@@ -17,4 +17,4 @@
         <div class="row">
             <!-- mx-auto class will keep it in center-->
             <div class="col-md-6 mx-auto">
-                <div class="card card-body text-center mt-5">
+                <div class="card card-body mt-5">
