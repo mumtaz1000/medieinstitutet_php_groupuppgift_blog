@@ -12,7 +12,7 @@ if (isset($_SESSION['username']) && (isset($_SESSION['password']))) {
     } else 
         if (isset($_SESSION['User_role']) && $_SESSION['User_role'] == "User") {
         echo "You are not admin.<br>";
-        include_once('../classes/Posts.php');
+        echo '<a href="post_form.php">Create a post</a>';
     } else {
         echo "No user role to display.<br>";
     }
