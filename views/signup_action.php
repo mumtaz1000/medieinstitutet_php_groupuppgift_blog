@@ -27,7 +27,7 @@ if ($password !== $passwordCheck) {
         $stm->bindParam(':email_IN', $email);
         $stm->bindParam(':password_IN', $password);
         if ($stm->execute()) {
-            header("location:login_form.php");
+            header("location:../index.php");
         } else {
             echo '<div class="alert alert-danger" role="alert">
             Cannot signup!</div>';
