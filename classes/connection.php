@@ -9,22 +9,53 @@ class Connection
     }
     public function getPosts()
     {
-        $statement = $this->pdo->prepare("SELECT * FROM posts ORDER BY Post_datE DESC");
+        $statement = $this->pdo->prepare("SELECT * FROM posts ORDER BY Post_date DESC");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function addPost($post)
+    public function addPost($post, $image)
     {
         session_start();
-        $statement = $this->pdo->prepare("INSERT INTO posts(Post_title, Post_description, POST_category, Post_date, Post_User_Id) VALUES (:title_IN,:description_IN,:category_IN,:date_IN,:userId_IN)");
+        $upload_dir = "../images/";
+        $target_file = $upload_dir . basename($image['postImage']['name']);
+
+        $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        if (isset($_POST['submit'])) {
+            $check = getimagesize($image['postImage']['tmp_name']);
+            if ($check == false) {
+                echo "The file is not image";
+                die;
+            }
+        }
+        if (file_exists($target_file)) {
+            echo "The file already exists!";
+            die;
+        }
+        if ($image['postImage']['size'] > 1000000) {
+            echo "The file is too big!";
+            die;
+        }
+        if ($fileType != "png" && $fileType != "gif" && $fileType != "jpg" && $fileType != "jpeg") {
+            echo "You can only upload PNG, GIF, JPG or JPEG.";
+            die;
+        }
+        if (move_uploaded_file($image['postImage']['tmp_name'], $target_file)) {
+            echo $target_file;
+        } else {
+            echo "Something goes wrong!";
+            die;
+        }
+        $statement = $this->pdo->prepare("INSERT INTO posts(Post_title, Post_description, POST_category, Post_date, Post_User_Id, Post_image) VALUES (:title_IN,:description_IN,:category_IN,:date_IN,:userId_IN,:image_IN)");
         $statement->bindParam(":title_IN", $post['postTitle']);
         $statement->bindParam(":description_IN", $post['postDescription']);
         $statement->bindParam(":category_IN", $post['postCategory']);
         $postDate = date('Y-m-d H:i:s');
         $statement->bindParam(":date_IN", $postDate);
-
         $statement->bindParam(":userId_IN", $_SESSION['User_id']);
+        $statement->bindParam(":image_IN", $target_file);
         return $statement->execute();
     }
+  
 }
 return new Connection();
