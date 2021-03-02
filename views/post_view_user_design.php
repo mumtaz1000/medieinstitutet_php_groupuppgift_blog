@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
+<?php
+include_once("../includes/partials/head.php");
+?>
 
 <body>
 
@@ -30,7 +23,7 @@
             <?php foreach ($posts as $post) : ?>
 
                 <div class="col-sm-9">
-                    <h4><small>RECENT POSTS</small></h4>
+                    <h4><small>RECENT POST</small></h4>
                     <hr>
                     <h2><?php echo $post['Post_title'] ?></h2>
                     <img class="card-img-top" src="<?php echo $post['Post_image'] ?>" alt="Post image">

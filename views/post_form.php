@@ -11,19 +11,16 @@ $posts = $connection->getPosts();
             <div class="col-sm-3 sidenav">
                 <h2>Millhouse</h2>
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#section1">Home</a></li>
-                    <li><a href="post_form.php">Create new post</a></li>
+                    <li><a href="post_view_user_design.php">Home</a></li>
+                    <li class="active"><a href="#">Create new post</a></li>
                     <li><a href="logout.php">Logout</a></li>
-
                 </ul><br>
 
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
+
+
             <!-- mx-auto class will keep it in center-->
-            <div class="col-md-6 mx-auto">
+            <div class="col-sm-9 mx-auto">
                 <div class="card card-body mt-5">
                     <div class="container-fluid">
                         <div class="row content">
@@ -44,13 +41,16 @@ $posts = $connection->getPosts();
                                 </div>
                                 <div class="form-group">
                                     <label for="postImage">Image</label>
-                                    <input type="file" class="form-control" name="postImage"><br>
+                                    <input type="file" class="form-control" name="postImage" style="padding: 2px;"><br>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">New Post</button>
                             </form>
                         </div>
-
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>

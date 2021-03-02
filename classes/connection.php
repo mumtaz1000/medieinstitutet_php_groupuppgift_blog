@@ -9,8 +9,14 @@ class Connection
     }
     public function getPosts()
     {
-        //$statement = $this->pdo->prepare("SELECT * FROM posts ORDER BY Post_id DESC");
-        $statement = $this->pdo->prepare("SELECT * FROM posts HAVING MAX(Post_id)");
+        $statement = $this->pdo->prepare("SELECT * FROM posts
+        WHERE Post_id=(SELECT MAX(Post_id) FROM posts)");
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getAllPosts()
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM posts ORDER BY DESC");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
