@@ -11,8 +11,8 @@ if (isset($_SESSION['username']) && (isset($_SESSION['password']))) {
         include_once('../includes/partials/header_admin.php');
     } else 
         if (isset($_SESSION['User_role']) && $_SESSION['User_role'] == "User") {
-        echo "You are not admin.<br>";
-        echo '<a href="post_form.php">Create a post</a>';
+        //echo "You are not admin.<br>";
+        header("location:post_view_user_design.php");
     } else {
         echo "No user role to display.<br>";
     }

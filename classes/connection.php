@@ -9,7 +9,8 @@ class Connection
     }
     public function getPosts()
     {
-        $statement = $this->pdo->prepare("SELECT * FROM posts ORDER BY Post_date DESC");
+        //$statement = $this->pdo->prepare("SELECT * FROM posts ORDER BY Post_id DESC");
+        $statement = $this->pdo->prepare("SELECT * FROM posts HAVING MAX(Post_id)");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -56,6 +57,5 @@ class Connection
         $statement->bindParam(":image_IN", $target_file);
         return $statement->execute();
     }
-  
 }
 return new Connection();
