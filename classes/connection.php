@@ -16,7 +16,7 @@ class Connection
     }
     public function getAllPosts()
     {
-        $statement = $this->pdo->prepare("SELECT * FROM posts ORDER BY DESC");
+        $statement = $this->pdo->prepare("SELECT * FROM posts ORDER  BY Post_id DESC");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -62,6 +62,23 @@ class Connection
         $statement->bindParam(":userId_IN", $_SESSION['User_id']);
         $statement->bindParam(":image_IN", $target_file);
         return $statement->execute();
+    }
+    public function addComments($comments, $id)
+    {
+        session_start();
+        $statement = $this->pdo->prepare("INSERT INTO comments(Comment_content, Comment_date, Comment_Post_id, Comment_User_id) VALUES (:content_IN,:date_IN,:postId_IN,:userId_IN)");
+        $statement->bindParam(":content_IN", $comments['commentContent']);
+        $postDate = date('Y-m-d H:i:s');
+        $statement->bindParam(":date_IN", $postDate);
+        $statement->bindParam(":postId_IN", $id['id']);
+        $statement->bindParam(":userId_IN", $_SESSION['User_id']);
+        return $statement->execute();
+    }
+    public function getComments($postId)
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM comments WHERE Comment_Post_id = $postId");
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 return new Connection();

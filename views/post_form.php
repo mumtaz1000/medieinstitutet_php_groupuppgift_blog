@@ -12,6 +12,7 @@ $posts = $connection->getPosts();
                 <h2>Millhouse</h2>
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="post_view_user_design.php">Home</a></li>
+                    <li><a href="all_post.php">View all</a></li>
                     <li class="active"><a href="#">Create new post</a></li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul><br>
