@@ -91,5 +91,23 @@ class Connection
         $statement2->execute();
         header("location:all_post_option.php");
     }
+    public function deleteComment($id)
+    {
+        $statement = $this->pdo->prepare("DELETE FROM comments WHERE Comment_id = :id_IN");
+        $statement->bindParam(":id_IN", $id);
+        $statement->execute();
+        header("location:all_post_option.php");
+    }
+    public function updatePost($id)
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM posts WHERE Post_id = :id_IN");
+        $statement->bindParam(":id_IN", $id);
+        $statement->execute();
+        $post = $statement->fetch(PDO::FETCH_ASSOC);
+        echo '<pre>';
+        var_dump($post);
+        echo '</pre>';
+        exit;
+    }
 }
 return new Connection();

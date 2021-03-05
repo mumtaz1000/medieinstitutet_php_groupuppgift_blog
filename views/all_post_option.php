@@ -28,11 +28,11 @@ $connection = require("../classes/connection.php");
                     <h2><?php echo $post['Post_title'] ?></h2>
                     <img class="card-img-top" src="<?php echo $post['Post_image'] ?>" alt="Post image" width="460" height="345">
                     <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, <?php echo $post['Post_date'] ?>.</h5>
-                    <h5><span class="label label-info"><?php echo $post['Post_category'] ?></span> </h5><br>
+                    <h5><span class="label label-info"><?php echo $post['Post_category'] ?></span> </h5>
 
                     <p><?php echo $post['Post_description'] ?></p>
                     <br><br>
-                    <button type="button" class="btn btn-primary">Edit post</button>
+                    <a href="update_post_action.php?id=<?php echo $post['Post_id'] ?>" class="btn btn-primary">Edit post</a>
                     <form style="display:inline-block" action="delete_post_action.php" method="post">
                         <input type="hidden" name="id" value="<?php echo $post['Post_id'] ?>">
                         <button type="submit" class="btn btn-danger">Delete post</button>
@@ -47,9 +47,12 @@ $connection = require("../classes/connection.php");
                         <div class="row">
                             <div class="col-sm-10" style="background-color:beige;">
                                 <h4>John Row <small><?php echo $comment['Comment_date'] ?></small>
-                                    <button type="button" class="close" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <form class="form-close-icon" action="delete_comment_action.php" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $comment['Comment_id'] ?>">
+                                        <button type="submit" class="close" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </form>
                                 </h4>
                                 <p><?php echo $comment['Comment_content'] ?></p>
                                 <br>
@@ -64,7 +67,7 @@ $connection = require("../classes/connection.php");
     </div>
 
     <footer class="container-fluid">
-        <p>Footer Text</p>
+        <p>&copy; 2021 Mumtaz Fatima</p>
     </footer>
 
 </body>

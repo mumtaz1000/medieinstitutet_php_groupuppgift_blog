@@ -17,6 +17,10 @@ img {
   height: auto;
 }
 
+.form-close-icon {
+  float: right;
+}
+
 /* Set black background color, white text and some padding */
 footer {
   background-color: #555;
