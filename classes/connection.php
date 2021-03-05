@@ -80,5 +80,16 @@ class Connection
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function deletePost($id)
+    {
+        $statement1 = $this->pdo->prepare("DELETE FROM comments WHERE Comment_Post_id = :id_IN");
+        $statement1->bindParam(":id_IN", $id);
+        $statement1->execute();
+
+        $statement2 = $this->pdo->prepare("DELETE FROM posts WHERE Post_id=:id_IN");
+        $statement2->bindParam(":id_IN", $id);
+        $statement2->execute();
+        header("location:all_post_option.php");
+    }
 }
 return new Connection();

@@ -16,7 +16,7 @@ if ($return[0] > 0) {
     $_SESSION['password'] = $password;
     $_SESSION['User_role'] = $return['User_role'];
     $_SESSION['User_id'] = $return['User_id'];
-    header("location: login_form.php");
+    header("location: post_view_user_design.php");
 } else {
     header("location: signup_form.php");
 }
