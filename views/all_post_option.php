@@ -32,7 +32,7 @@ $connection = require("../classes/connection.php");
 
                     <p><?php echo $post['Post_description'] ?></p>
                     <br><br>
-                    <a href="update_post_action.php?id=<?php echo $post['Post_id'] ?>" class="btn btn-primary">Edit post</a>
+                    <a href="update_post_form.php?id=<?php echo $post['Post_id'] ?>" class="btn btn-primary">Edit post</a>
                     <form style="display:inline-block" action="delete_post_action.php" method="post">
                         <input type="hidden" name="id" value="<?php echo $post['Post_id'] ?>">
                         <button type="submit" class="btn btn-danger">Delete post</button>

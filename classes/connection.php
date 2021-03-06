@@ -98,16 +98,23 @@ class Connection
         $statement->execute();
         header("location:all_post_option.php");
     }
-    public function updatePost($id)
+    public function getCurrentPost($id)
     {
         $statement = $this->pdo->prepare("SELECT * FROM posts WHERE Post_id = :id_IN");
         $statement->bindParam(":id_IN", $id);
         $statement->execute();
-        $post = $statement->fetch(PDO::FETCH_ASSOC);
-        echo '<pre>';
-        var_dump($post);
-        echo '</pre>';
-        exit;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function updatePost($post, $image)
+    {
+        //var_dump($post);
+        $statement = $this->pdo->prepare("UPDATE posts SET Post_title=:title_IN, Post_description=:description_IN, POST_category=:category_IN, Post_image=:image_IN
+        WHERE Post_id = :id_IN");
+        $statement->bindParam(":title_IN", $post['postTitle']);
+        $statement->bindParam(":description_IN", $post['postDescription']);
+        $statement->bindParam(":category_IN", $post['postCategory']);
+        $statement->bindParam(":image_IN", $image);
+        return $statement->execute();
     }
 }
 return new Connection();
