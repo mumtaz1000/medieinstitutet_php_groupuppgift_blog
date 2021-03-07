@@ -105,16 +105,51 @@ class Connection
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function updatePost($post, $image)
+    public function updateImage($image, $id)
     {
-        //var_dump($post);
-        $statement = $this->pdo->prepare("UPDATE posts SET Post_title=:title_IN, Post_description=:description_IN, POST_category=:category_IN, Post_image=:image_IN
+
+        $upload_dir = "../images/";
+        $target_file = $upload_dir . basename($image['postImage']['name']);
+
+        $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        if (isset($_POST['submit'])) {
+            $check = getimagesize($image['postImage']['tmp_name']);
+            if ($check == false) {
+                echo "The file is not image";
+                die;
+            }
+        }
+        if ($image['postImage']['size'] > 1000000) {
+            echo "The file is too big!";
+            die;
+        }
+        if ($fileType != "png" && $fileType != "gif" && $fileType != "jpg" && $fileType != "jpeg") {
+            echo "You can only upload PNG, GIF, JPG or JPEG.";
+            die;
+        }
+        if (move_uploaded_file($image['postImage']['tmp_name'], $target_file)) {
+            echo $target_file;
+        } else {
+            echo "Something goes wrong!";
+            die;
+        }
+        $statement = $this->pdo->prepare("UPDATE posts SET Post_image=:image_IN
+            WHERE Post_id = :id_IN");
+        $statement->bindParam(":image_IN", $target_file);
+        $statement->bindParam(":id_IN", $id);
+        $statement->execute();
+    }
+    public function updatePost($post)
+    {
+        $statement = $this->pdo->prepare("UPDATE posts SET Post_title=:title_IN, Post_description=:description_IN, POST_category=:category_IN
         WHERE Post_id = :id_IN");
         $statement->bindParam(":title_IN", $post['postTitle']);
         $statement->bindParam(":description_IN", $post['postDescription']);
         $statement->bindParam(":category_IN", $post['postCategory']);
-        $statement->bindParam(":image_IN", $image);
-        return $statement->execute();
+        $statement->bindParam(":id_IN", $post['postId']);
+        $statement->execute();
+        header("location:all_post.php");
     }
 }
 return new Connection();

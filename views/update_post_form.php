@@ -15,8 +15,9 @@ if (!$id) {
             <form action="update_post_action.php" method="post" enctype="multipart/form-data">
                 <?php if ($post['Post_image']) : ?>
                     <img src="<?php echo $post['Post_image'] ?>" width="460" height="345">
-                    <input type="hidden" name="postImage" value="<?php echo $post['Post_image'] ?>">
                 <?php endif; ?>
+                <input type="hidden" name="postId" value="<?php echo $id ?>">
+
                 <div class="form-group">
                     <label for="postTitle">Title</label>
                     <input type="text" class="form-control" name="postTitle" value="<?php echo $post['Post_title'] ?>">
@@ -31,7 +32,7 @@ if (!$id) {
                 </div>
                 <div class="form-group">
                     <label for="postImage">Image</label>
-                    <input type="file" class="form-control" style="padding: 2px;" value=""><br>
+                    <input type="file" class="form-control" style="padding: 2px;" name="postImage"><br>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update Post</button>
