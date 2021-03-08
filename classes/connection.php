@@ -20,6 +20,28 @@ class Connection
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getUserName($postId)
+    {
+        $statement = $this->pdo->prepare("SELECT users.User_name FROM users
+        WHERE EXISTS (SELECT posts.Post_id FROM posts 
+        WHERE 
+        posts.Post_User_id = users.User_id AND 
+        posts.Post_id=:postid_IN)");
+        $statement->bindParam(":postid_IN", $postId);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getCommentUserName($commentId)
+    {
+        $statement = $this->pdo->prepare("SELECT users.User_name FROM users
+        WHERE EXISTS (SELECT comments.Comment_id FROM comments 
+        WHERE 
+        comments.Comment_User_id = users.User_id AND
+        comments.Comment_id=:commentid_IN)");
+        $statement->bindParam(":commentid_IN", $commentId);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function addPost($post, $image)
     {
         session_start();

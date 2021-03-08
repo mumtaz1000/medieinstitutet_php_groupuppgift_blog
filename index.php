@@ -14,10 +14,7 @@ include("./includes/partials/database_connection.php");
 session_start();
 if (isset($_SESSION['username']) && (isset($_SESSION['password']))) {
     echo "<h1>Welcome " . $_SESSION['username'] . "</h1>";
-    if (isset($_SESSION['User_role']) && $_SESSION['User_role'] == "Admin") {
-        include_once('./includes/partials/header_admin.php');
-    } else 
-        if (isset($_SESSION['User_role']) && $_SESSION['User_role'] == "User") {
+        if (isset($_SESSION['User_role'])) {
         //echo "You are not admin.<br>";
         header("location:./views/post_view_user_design.php");
     } else {

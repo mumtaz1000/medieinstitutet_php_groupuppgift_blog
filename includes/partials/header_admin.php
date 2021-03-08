@@ -1,17 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Millhouse</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
+<?php
+include_once("../includes/partials/head.php");
+$connection = require("../classes/connection.php");
+?>
 
+<body>
 
-    </ul>
-    <span class="navbar-text">Admin
-    </span>
-  </div>
-</nav>
+  <div class="container-fluid">
+    <div class="row content">
+      <div class="col-sm-3 sidenav">
+        <h2>Millhouse</h2>
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#section1">Home</a></li>
+          <li><a href="all_post.php">View all</a></li>
+          <li><a href="post_form.php">Create new post</a></li>
+          <li><a href="logout.php">Logout</a></li>
+
+        </ul><br>
+
+      </div>

@@ -3,6 +3,10 @@ include_once("../includes/partials/head.php");
 
 $connection = require_once("../classes/connection.php");
 $posts = $connection->getPosts();
+session_start();
+if ($_SESSION['User_role'] == "Admin") {
+    echo '<a href="all_post_option.php" class="btn btn-link">Admin menu</a>';
+}
 ?>
 
 <body>

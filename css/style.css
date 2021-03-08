@@ -17,6 +17,11 @@ img {
   height: auto;
 }
 
+#admin-menu {
+  background-color: green;
+  display: none;
+}
+
 .form-close-icon {
   float: right;
 }
