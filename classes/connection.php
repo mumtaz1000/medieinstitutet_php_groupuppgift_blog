@@ -98,7 +98,9 @@ class Connection
     }
     public function getComments($postId)
     {
-        $statement = $this->pdo->prepare("SELECT * FROM comments WHERE Comment_Post_id = $postId");
+        $statement = $this->pdo->prepare("SELECT * FROM comments 
+        WHERE Comment_Post_id = $postId 
+        ORDER  BY Comment_id DESC");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
